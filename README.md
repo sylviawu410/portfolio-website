@@ -1,4 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Personal Portfolio Website
+
+## Overview
+
+This website is to display my past projects and showcase my frontend abilities.
+
+
+## Tech Stack
+
+- **Next.js** (Frontend framework)
+- **Tailwind.css** (UI components)
+
+## Features
+
+### CSS
+
+- **Animations**:
+  - Displays ...
+  - Each item shows:
+    - ....
+- **Organization**:
+  - ....
+
+
+
+
 
 ## Getting Started
 
