@@ -19,16 +19,27 @@
   }
 }
 
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), var(--font-playfair), serif;
 }
 
+@media (min-width: 800px) {
+  
 h1 {
   text-align: center;
   font-family: "Playfair Display";
-  font-size: 267.34px;
+  font-size: 248px;
   font-weight: 700;
 }
 
@@ -47,4 +58,5 @@ h3 {
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
 }

@@ -16,7 +16,7 @@ const inter = Inter({
 
 //meta data
 export const metadata = {
-  title: "Sylvia's Portfolio Website",
+  title: "Sylvia Wu Portfolio Website",
   description: "Portfolio website designed and developed by Sylvia Wu",
 };
 
