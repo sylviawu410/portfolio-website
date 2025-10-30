@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Typewriter from '@/components/Typewriter';
+
 
 export default function Home() {
   return (
@@ -31,31 +32,48 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
-          <h2>About Meee</h2>
-          <span className="typewrite relative">
-            <span className="wrap">{typewriteHeader}</span>
-            <span className="absolute right-0 w-1 h-6 bg-white animate-blink ml-1"></span>
-          </span>
-
-          <Typewriter />
-          <div>
-            <div>Hi, I’m Sylvia!</div>
-            <div>A recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management.</div>
-            <div>I'm a motivated frontend developer passionate about building clean and user-focused web applications. With practical experience in the IT industry, I bring a collaborative mindset and a strong desire to keep learning.</div>
-            <div>I'm currently seeking full-time opportunities to grow and contribute as a web developer.</div>
+        <section className="h-full py-70 sm:py-80 w-full gap-40 sm:gap-50 md:gap-70 flex flex-col ">
+          <div className=" text-center font-bold text-3xl md:text-7xl sm:text-4xl pb-30 mx-auto">
+            <Typewriter
+              phrases={["Welcome to my portfolio", "I build apps", "I love design", "Scroll down for more info"]}
+              observe={true}
+              typewriterStyle="bg-[#ce3635] "
+            />
           </div>
 
-          <h3>Timeline</h3>
+          <div className="w-[70%] sm:w-[50%] gap-10 flex flex-col m-auto">
+            <Typewriter
+              typingSpeed={50}
+              phrases={["Hello! A recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management."]}
+              isBlinking={false}
+            />
+            <Typewriter
+              typingSpeed={50}
+              phrases={["I'm a motivated frontend developer passionate about building clean and user-focused web applications. With practical experience in the IT industry, I bring a collaborative mindset and a strong desire to keep learning. I'm currently seeking full-time opportunities to grow and contribute as a web developer."]}
+              isBlinking={false}
+            />
+          </div>
 
-          <h4>IT Trainee Intern</h4>
-          <p>developed frontend components for web applications at OriginBit Limited</p>
-          <h4>Frontend Engineer Intern</h4>
-          <p>Interned as Frontend Engineer Intern at imBee Limited</p>
-          <h4>CUHK Graduate</h4>
-          <h4>Coming Soon</h4>
 
-          <h3>Tech Stack</h3>
+
+
+          <div>
+            <h3 className="text-3xl m-auto text-center">
+              <Typewriter
+                phrases={["Timeline"]}
+                isBlinking={false}
+              />
+            </h3>
+            <h4>IT Trainee Intern</h4>
+            <p>developed frontend components for web applications at OriginBit Limited</p>
+            <h4>Frontend Engineer Intern</h4>
+            <p>Interned as Frontend Engineer Intern at imBee Limited</p>
+            <h4>CUHK Graduate</h4>
+            <h4>Coming Soon</h4>
+          </div>
+
+
+          <h3 className="text-3xl m-auto">Tech Stack</h3>
 
           <div>
             <div>
@@ -82,7 +100,7 @@ export default function Home() {
         </section>
 
         <section>
-          <h2>Portfolio</h2>
+          <h2 className="text-3xl m-auto">Portfolio</h2>
           <div>
             <div>
               <h4>01 / E-Commerce Website Project</h4>
@@ -100,9 +118,13 @@ export default function Home() {
 
 
         <section>
-          <h2>Contact...</h2>
+          <Typewriter
+            phrases={["Let's work together"]}
+            observe={true}
+          />
+          <h2 >Contact...</h2>
           <img src="/"></img>
-          <h3>Get in touch Get in touch</h3>
+          <h3 >Get in touch Get in touch</h3>
           <p>LinkedIn↗ </p>
           <p>Gmail↗</p>
           <p>GitHub↗</p>

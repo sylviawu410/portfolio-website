@@ -5,12 +5,6 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -20,8 +14,15 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
 
 .animate-blink {
@@ -34,29 +35,44 @@ body {
   font-family: var(--font-inter), var(--font-playfair), serif;
 }
 
-@media (min-width: 800px) {
-  
 h1 {
-  text-align: center;
   font-family: "Playfair Display";
-  font-size: 248px;
+  font-style: normal;
   font-weight: 700;
+  line-height: normal;
 }
 
 h2 {
   font-family: "Playfair Display";
-  font-size: 298.34px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 
 h3 {
-  text-align: center;
   font-family: "Playfair Display";
-  font-size: 81.308px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
+
+@media (min-width: 800px) {
+
+  h1 {
+    text-align: center;
+    font-size: 248px;
+  }
+
+  h2 {
+    font-size: 298.34px;
+  }
+
+  h3 {
+    text-align: center;
+    font-family: "Playfair Display";
+    font-size: 81.308px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
 }
