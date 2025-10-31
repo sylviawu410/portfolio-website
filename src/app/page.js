@@ -6,6 +6,24 @@ import Timeline from "@/components/Timeline";
 
 
 export default function Home() {
+
+  const timelineEvents = [
+    { id: "event1", year: "2023", title: "Internship at OriginBit Limited" },
+    { id: "event2", year: "2024", title: "Internship at " },
+    { id: "event3", year: "2025", title: "Graduation" },
+    { id: "event4", year: "2025", title: "Joined FDM Group" },
+    { id: "event5", year: "2025", title: "Coming Soon" },
+  ]
+
+          // IT Trainee Intern
+        // developed frontend components for web applications at OriginBit Limited
+
+        // Frontend Engineer Intern
+        // Interned as Frontend Engineer Intern at imBee Limited
+
+        // CUHK Graduate
+        // Coming Soon
+
   return (
     <div className="overflow-hidden">
       <nav className="flex justify-between items-center py-12">
@@ -19,7 +37,7 @@ export default function Home() {
           <span>Contact</span>
         </div>
       </nav>
-      <main className="flex flex-col gap-[50px] row-start-2 items-center sm:items-start">
+      <main className="flex flex-col gap-[100px] row-start-2 items-center sm:items-start">
         <section className="relative h-[750px] w-full overflow-hidden">
           <div className="absolute inset-0 z-0">
             <p className="w-[30%] leading-[1.2] absolute left-25 top-15">I create high-quality digital solutions, with experience working with startups and enterprise web applications.</p>
@@ -28,50 +46,38 @@ export default function Home() {
             <div className="bg-white text-black w-auto p-1.5 z-10 absolute font-semibold text-[28px] right-30 bottom-10">Hi, I am Sylvia</div>
           </div>
           <div className="absolute inset-0 flex items-center jusity-center z-10">
-            <h1 className=" z-10 leading-[0.7] text-7xl">Project Portfolio</h1> 
+            <h1 className=" z-10 leading-[0.7] text-7xl">Project Portfolio</h1>
           </div>
         </section>
 
-        <section className="h-full py-90 sm:py-80 w-full gap-40 sm:gap-50 md:gap-70 flex flex-col ">
+        <section className="h-full pt-90 sm:pt-80 w-full gap-80 md:gap-90 flex flex-col ">
           <div className=" text-center font-bold text-3xl md:text-7xl sm:text-4xl pb-30 mx-auto">
             <Typewriter
-              phrases={["Welcome to my portfolio", "I build apps", "I love design", "Scroll down for more info"]}
+              phrases={["Welcome to my portfolio", "I build apps", "I love design", "Scroll down for more"]}
               observe={true}
               typewriterStyle="bg-[#ce3635] "
             />
           </div>
 
-          <div className="w-[70%] sm:w-[50%] gap-10 flex flex-col m-auto">
+          <div className="w-[70%] sm:w-[40%] gap-10 flex flex-col m-auto">
             <Typewriter
               typingSpeed={50}
-              phrases={["Hello! A recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management."]}
-              isBlinking={false}
-            />
-            <Typewriter
-              typingSpeed={50}
-              phrases={["I'm a motivated frontend developer passionate about building clean and user-focused web applications. With practical experience in the IT industry, I bring a collaborative mindset and a strong desire to keep learning. I'm currently seeking full-time opportunities to grow and contribute as a web developer."]}
+              phrases={["Hello! I am a recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management. \n\n I'm a motivated frontend developer passionate about building clean and user-focused web applications. With practical experience in the IT industry, I bring a collaborative mindset and a strong desire to keep learning. I'm currently seeking full-time opportunities to grow and contribute as a web developer."]}
               isBlinking={false}
             />
           </div>
 
-
-
-
-          <div>
-            <h3 className="text-3xl m-auto text-center">
+          <div className="">
+            <h3 className="text-3xl m-auto py-30 text-center">
               <Typewriter
                 phrases={["Timeline"]}
                 isBlinking={false}
               />
             </h3>
-            <h4>IT Trainee Intern</h4>
-            <p>developed frontend components for web applications at OriginBit Limited</p>
-            <h4>Frontend Engineer Intern</h4>
-            <p>Interned as Frontend Engineer Intern at imBee Limited</p>
-            <h4>CUHK Graduate</h4>
-            <h4>Coming Soon</h4>
 
-            <Timeline />
+            <Timeline
+              events={timelineEvents}
+            />
           </div>
 
 

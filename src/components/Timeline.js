@@ -2,18 +2,21 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
-import throttle from "lodash.throttle";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger, Draggable);
+    gsap.registerPlugin(ScrollTrigger, Draggable, ScrollToPlugin);
 }
 
-const Timeline = () => {
+const Timeline = (
+    {
+        events = []
+    }) => {
     const trackRef = useRef(null);
     const navLinksRef = useRef([]);
     const sectionRefs = useRef([]);
-    const scrollContainerRef = useRef(null);
     const timelineWrapperRef = useRef(null);
+    const navRef = useRef(null);
 
     useEffect(() => {
         if (!trackRef.current || navLinksRef.current.length === 0) return;
@@ -26,19 +29,27 @@ const Timeline = () => {
         );
 
         const lastItemWidth = () => navLinks[navLinks.length - 1].offsetWidth;
-        const getUseableHeight = () => {
-            if (!timelineWrapperRef.current) return 0;
-            return timelineWrapperRef.current.offsetHeight - window.innerHeight;
-        };
+
         const getDraggableWidth = () =>
             track.offsetWidth * 0.5 - lastItemWidth();
+
+        const getScrollHeight = () => {
+            const timelineHeight = timelineWrapperRef.current.offsetHeight;
+            return timelineHeight;
+        };
 
         const updatePosition = () => {
             const left = track.getBoundingClientRect().left * -1;
             const width = getDraggableWidth();
-            const useableHeight = getUseableHeight();
-            const y = gsap.utils.mapRange(0, width, 0, useableHeight, left);
-            st.scroll(y);
+            const scrollHeight = getScrollHeight();
+
+            const timelineTop = timelineWrapperRef.current.offsetTop;
+            const scrollY = gsap.utils.mapRange(0, width, 0, scrollHeight, left);
+
+            window.scrollTo({
+                top: timelineTop + scrollY,
+                behavior: 'instant'
+            });
         };
 
         const tl = gsap.timeline().to(track, {
@@ -46,31 +57,37 @@ const Timeline = () => {
             ease: "none",
         });
 
-        //scroll trigger for animation
+        // Main ScrollTrigger for timeline animation
         const st = ScrollTrigger.create({
             animation: tl,
-            scrub: 0,
+            scrub: 0.5,
             trigger: timelineWrapperRef.current,
             start: "top top",
-            end: () => {
-                if (!timelineWrapperRef.current) return 0;
-                return timelineWrapperRef.current.offsetHeight;
-            },
-            });
+            end: () => `+=${getScrollHeight()}`,
+            pin: false,
+        });
 
-        //a new ScrollTrigger instance specifically for toggling the visibility of the timeline (nav) 
+        // ScrollTrigger for showing/hiding timeline nav
         ScrollTrigger.create({
             trigger: timelineWrapperRef.current,
-            start: "top center",   // when the top of the timeline hits center of viewport
-            end: "bottom center",  // until the bottom of the timeline hits center
-            toggleClass: {
-                targets: document.body,
-                className: "timeline--active",
+            start: "top top",
+            end: "bottom top",
+            onEnter: () => {
+                document.body.classList.add("timeline--active");
+            },
+            onLeave: () => {
+                document.body.classList.remove("timeline--active");
+            },
+            onEnterBack: () => {
+                document.body.classList.add("timeline--active");
+            },
+            onLeaveBack: () => {
+                document.body.classList.remove("timeline--active");
             },
         });
 
-
-        Draggable.create(track, {
+        // Draggable setup
+        const draggableInstance = Draggable.create(track, {
             type: "x",
             inertia: true,
             bounds: {
@@ -78,8 +95,12 @@ const Timeline = () => {
                 maxX: getDraggableWidth() * -1,
             },
             edgeResistance: 1,
-            onDragStart: () => st.disable(),
-            onDragEnd: () => st.enable(),
+            onDragStart: () => {
+                st.disable();
+            },
+            onDragEnd: () => {
+                st.enable();
+            },
             onDrag: updatePosition,
             onThrowUpdate: updatePosition,
         });
@@ -90,74 +111,77 @@ const Timeline = () => {
                 const heading = section.querySelector("h2");
                 const image = section.querySelector(".section__image");
 
-                gsap.set(heading, { opacity: 0, y: 50 });
-                gsap.set(image, { opacity: 0, rotateY: 15 });
+                if (heading && image) {
+                    gsap.set(heading, { opacity: 0, y: 50 });
+                    gsap.set(image, { opacity: 0, rotateY: 15 });
 
-                const sectionTl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top center",
-                        end: () => `+=${window.innerHeight}`,
-                        toggleActions: "play reverse play reverse",
-                    },
-                });
-
-                sectionTl
-                    .to(image, {
-                        opacity: 1,
-                        rotateY: -5,
-                        duration: 6,
-                        ease: "elastic",
-                    })
-                    .to(
-                        heading,
-                        { opacity: 1, y: 0, duration: 2 },
-                        0.5
-                    );
-
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 20px",
-                        end: "bottom top",
-                        toggleActions: "play none play reverse",
-                        onToggle: ({ isActive }) => {
-                            const sectionLink = navLinks[index];
-                            if (isActive) {
-                                sectionLink.classList.add("is-active");
-                            } else {
-                                sectionLink.classList.remove("is-active");
-                            }
+                    const sectionTl = gsap.timeline({
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top center",
+                            end: () => `+=${window.innerHeight}`,
+                            toggleActions: "play reverse play reverse",
                         },
-                    },
+                    });
+
+                    sectionTl
+                        .to(image, {
+                            opacity: 1,
+                            rotateY: -5,
+                            duration: 6,
+                            ease: "elastic",
+                        })
+                        .to(
+                            heading,
+                            { opacity: 1, y: 0, duration: 2 },
+                            0.5
+                        );
+                }
+
+                // Active link highlighting
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onEnter: () => navLinks[index]?.classList.add("is-active"),
+                    onLeave: () => navLinks[index]?.classList.remove("is-active"),
+                    onEnterBack: () => navLinks[index]?.classList.add("is-active"),
+                    onLeaveBack: () => navLinks[index]?.classList.remove("is-active"),
                 });
             });
         }
 
-        // Keyboard navigation
-        // track.addEventListener("keyup", (e) => {
-        //     const id = e.target.getAttribute("href");
-        //     if (!id || e.key !== "Tab") return;
-        //     const section = document.querySelector(id);
-        //     const y = section.getBoundingClientRect().top + window.scrollY;
-        //     st.scroll(y);
-        // });
+        // Click navigation for timeline links
+        navLinks.forEach((link, index) => {
+            const handleClick = (e) => {
+                e.preventDefault();
+                const section = sections[index];
+                if (section) {
+                    const targetY = section.offsetTop;
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: targetY,
+                        ease: "power2.inOut"
+                    });
+                }
+            };
 
-        
+            link.addEventListener("click", handleClick);
+        });
+
+        // Cleanup
+        return () => {
+            st.kill();
+            ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+            if (draggableInstance && draggableInstance[0]) {
+                draggableInstance[0].kill();
+            }
+        };
     }, []);
 
-    const years = ["2023", "2024", "2025"];
-    const events = [
-        { id: "event1", year: "2023", title: "Internship at ABC Corp" },
-        { id: "event2", year: "2023", title: "Freelance Project" },
-        { id: "event3", year: "2024", title: "Graduation" },
-        { id: "event4", year: "2024", title: "Joined XYZ Ltd." },
-        { id: "event5", year: "2025", title: "Promotion to Lead Developer" },
-    ];
-
     return (
-        <div className="timeline" ref={timelineWrapperRef}>
-            <nav>
+        <>
+            <nav className="timeline-nav" ref={navRef}>
                 <div className="marker" />
                 <div className="nav__track" ref={trackRef}>
                     <ul className="nav__list">
@@ -177,30 +201,33 @@ const Timeline = () => {
                 </div>
             </nav>
 
-            <main>
-                {events.map((event, index) => (
-                    <section
-                        key={event.id}
-                        id={event.id}
-                        style={{ "--i": index }}
-                        ref={(el) => (sectionRefs.current[index] = el)}
-                    >
-                        <div className="container">
-                            <h2 className="section__heading">
-                                <span>{event.year}</span>
-                                <span>{event.title}</span>
-                            </h2>
-                            <div className="section__image">
-                                <img
-                                    src={`https://via.placeholder.com/1200x800?text=${event.title}`}
-                                    alt={event.title}
-                                />
+            <div className="timeline" ref={timelineWrapperRef}>
+                <main>
+                    {events.map((event, index) => (
+                        <section
+                            key={event.id}
+                            id={event.id}
+                            style={{ "--i": index }}
+                            ref={(el) => (sectionRefs.current[index] = el)}
+                        >
+                            <div className="container">
+                                <h2 className="section__heading">
+                                    <span>{event.year}</span>
+                                    <span>{event.title}</span>
+                                </h2>
+                                <div className="section__image">
+                                    <img
+                                        // src={`https://via.placeholder.com/1200x800?text=${encodeURIComponent(event.title)}`}
+                                        src="globe.svg"
+                                        alt={event.title}
+                                    />
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                ))}
-            </main>
-        </div>
+                        </section>
+                    ))}
+                </main>
+            </div>
+        </>
     );
 };
 
