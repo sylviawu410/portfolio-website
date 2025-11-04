@@ -21,6 +21,10 @@
   animation: blink 1s step-end infinite;
 }
 
+#project-protfolio:hover {
+  transform: translateY(-10px);
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -58,7 +62,7 @@ h3 {
   }
 
   section {
-    --h: calc(var(--i) * 30);
+    --h: calc(var(--i) * 15);
 
     min-height: 100vh;
     padding: 8rem 0 max(5vh, 2rem);
@@ -255,11 +259,15 @@ body.timeline--active .marker::before {
   display: none;
 }
 
+
+
+
 @media (min-width: 800px) {
 
   h1 {
     text-align: center;
     font-size: 248px;
+    margin: 0;
   }
 
   h2 {
@@ -268,7 +276,6 @@ body.timeline--active .marker::before {
 
   h3 {
     text-align: center;
-    font-family: "Playfair Display";
     font-size: 81.308px;
     font-style: normal;
     font-weight: 400;

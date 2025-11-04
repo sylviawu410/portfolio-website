@@ -52,9 +52,10 @@ const Timeline = (
             });
         };
 
+        // Creates the actual horizontal movement animation (Moves the timeline track from left to right as you scroll)
         const tl = gsap.timeline().to(track, {
             x: () => getDraggableWidth() * -1,
-            ease: "none",
+            ease: "none", //linear movement (no acceleration/deceleration)
         });
 
         // Main ScrollTrigger for timeline animation
@@ -68,6 +69,7 @@ const Timeline = (
         });
 
         // ScrollTrigger for showing/hiding timeline nav
+        // Links the horizontal timeline movement to vertical page scrolling
         ScrollTrigger.create({
             trigger: timelineWrapperRef.current,
             start: "top top",
@@ -112,9 +114,11 @@ const Timeline = (
                 const image = section.querySelector(".section__image");
 
                 if (heading && image) {
+                    //Initially hides headings and images (opacity: 0)
                     gsap.set(heading, { opacity: 0, y: 50 });
                     gsap.set(image, { opacity: 0, rotateY: 15 });
 
+                    //When each section enters the viewport, animates them in
                     const sectionTl = gsap.timeline({
                         scrollTrigger: {
                             trigger: section,
@@ -124,6 +128,7 @@ const Timeline = (
                         },
                     });
 
+                    //Image gets a 3D rotation effect with elastic easing (bouncy)
                     sectionTl
                         .to(image, {
                             opacity: 1,
@@ -138,7 +143,7 @@ const Timeline = (
                         );
                 }
 
-                // Active link highlighting
+                // Active link highlighting (Monitors when each section enters/leaves the viewport center)
                 ScrollTrigger.create({
                     trigger: section,
                     start: "top center",
