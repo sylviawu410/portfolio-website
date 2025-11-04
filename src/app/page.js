@@ -16,6 +16,14 @@ export default function Home() {
     { id: "event5", year: "2025", title: "Coming Soon" },
   ]
 
+    const timelineEvents = [
+    { id: "event1", year: "2023", title: "E-Commerce Website Project" },
+    { id: "event2", year: "2024", title: "FYP - Integrating Digital Identities with Blockchain Technology" },
+    { id: "event3", year: "2025", title: "Magazine Website" },
+    { id: "event4", year: "2025", title: "Joined FDM Group" },
+    { id: "event5", year: "2025", title: "Coming Soon" },
+  ]
+
   // IT Trainee Intern
   // developed frontend components for web applications at OriginBit Limited
 
