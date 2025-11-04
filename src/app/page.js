@@ -2,15 +2,16 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import Typewriter from '@/components/Typewriter';
+import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
 
 
 export default function Home() {
 
-  const timelineEvents = [
-    { id: "event1", year: "2023", title: "Internship at OriginBit Limited" },
-    { id: "event2", year: "2024", title: "Internship at " },
-    { id: "event3", year: "2025", title: "Graduation" },
+  const projectEvents = [
+    { id: "event1", year: "2023", title: "E-Commerce Website Project" },
+    { id: "event2", year: "2024", title: "FYP - Integrating Digital Identities with Blockchain Technology" },
+    { id: "event3", year: "2025", title: "Magazine Website" },
     { id: "event4", year: "2025", title: "Joined FDM Group" },
     { id: "event5", year: "2025", title: "Coming Soon" },
   ]
@@ -74,10 +75,8 @@ export default function Home() {
                 isBlinking={false}
               />
             </h3>
+            <Timeline />
 
-            <Timeline
-              events={timelineEvents}
-            />
           </div>
 
         </section>
@@ -89,7 +88,7 @@ export default function Home() {
             /></h3>
 
           <div className="w-8/10 m-auto flex flex-col gap-15 ">
-            <div className="text-center text-xl underline decoration-[#ce3635] underline-offset-3"> Web Development</div>
+            <div className="text-center text-xl underline decoration-[#ce3635] underline-offset-3 "> Web Development</div>
             <div className="flex gap-20">
               <div className="flex flex-col gap-10">
                 <div className="flex gap-10 ">
@@ -112,18 +111,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section>
+        <section className="w-full">
           <h2 className="text-3xl m-auto">Portfolio</h2>
-          <div>
-            <div>
-              <h4>01 / E-Commerce Website Project</h4>
-              <p>Furniture website with all features you expected. Had a touch of web security and performance optimizations.</p>
-              <p>Tech Stack: Next.js, Tailwind.css, AWS EC2, Nginx, MySQL</p>
-              <p><a>Github repo of this project ↗</a></p>
-            </div>
-            <img src="/"></img>
-          </div>
-          <div>line</div>
+          <Projects
+            events={projectEvents}
+          />
 
 
           <p>Check out more on my GitHub↗ </p>
