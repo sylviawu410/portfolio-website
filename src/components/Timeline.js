@@ -2,37 +2,28 @@ import React, { useEffect, useState, useRef } from 'react';
 
 
 const Timeline = ({
-    //   phrases = [],
+    events = [],
 }) => {
 
     return (
         <div className="timeline">
             <div className="w-fit m-auto">
-                <div className="card">
-                    <div className="info">
-                        <h4 className="title">Internship 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                {events.map((event, index) => (
+                    <div className="flex flex-col md:flex-row items-center gap-8 md:gap-15 justify-center autoShow my-20">
+                        <div className=' flex-col '>
+                            <div className='text-5xl sm:text-6xl md:text-7xl font-bold mt-2 '>{event.year}</div>
+                            <div></div>
+                        </div>
+                        <div className="w-75/100 md:w-4/10 lg:w-3/10">
+                            <p className='text-[#ad5c5c] mb-2'>{event.firm}</p>
+                            <h4 className="text-3xl md:text-4xl font-semibold">{event.title}</h4>
+                            <p className='mt-7 text-[#baabab]'>{event.content} </p>
+                        </div>
                     </div>
-                </div>
-                <div className="card">
-                    <div className="info">
-                        <h4 className="title">Internship 2</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="info">
-                        <h4 className="title">Graduation</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="info">
-                        <h4 className="title">Joined ABC Company</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    </div>
-                </div>
+                        ))}
             </div>
+
+
         </div>
 
     );
