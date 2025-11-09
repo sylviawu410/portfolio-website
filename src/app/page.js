@@ -62,6 +62,9 @@ export default function Home() {
               typewriterStyle="bg-[#ce3635] "
             />
           </div>
+          <div className="autoShow">
+            <p>for testing</p>
+          </div>
           <div >
             <div className="w-[70%] lg:w-[30%] sm:w-[60%] gap-10 flex flex-col m-auto">
               <p className="autoShow" >Hi! I am a recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management.</p>
