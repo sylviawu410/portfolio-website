@@ -9,7 +9,7 @@ const Timeline = ({
         <div className="timeline">
             <div className="w-fit m-auto">
                 {events.map((event, index) => (
-                    <div className="flex flex-col md:flex-row items-center gap-8 md:gap-15 justify-center autoShow my-20">
+                    <div key={index} className="flex flex-col md:flex-row items-center gap-8 md:gap-15 justify-center autoShow my-20">
                         <div className=' flex-col '>
                             <div className='text-5xl sm:text-6xl md:text-7xl font-bold mt-2 '>{event.year}</div>
                             <div></div>

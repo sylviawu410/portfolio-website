@@ -53,20 +53,47 @@ h3 {
   }
 }
 
+svg path {
+  fill: transparent;
+  stroke: white;
+  stroke-dasharray: 947;
+  stroke-dashoffset: 947;
+  stroke-width: 0.1;
+  animation: titleAnimation 4s ease-in-out 1 forwards;
+}
 
-.autoShow{
-    animation: autoShowAnimation both ;
-    animation-timeline: view(70% 5%);
+@keyframes titleAnimation {
+  0%{
+    stroke-dashoffset: 947;
+  }
+
+  80%{
+    fill: transparent;
+  }
+
+  100%{
+    fill: white;
+    stroke-dashoffset: 0;
+  }
+  
+}
+
+.autoShow {
+  animation: autoShowAnimation both !important;
+  animation-timeline: view(70% 5%) !important;
 
 }
-@keyframes autoShowAnimation{
-    from{
-        opacity: 0;
-        transform: translateY(200px) scale(0.3);
-    }to{
-        opacity: 1;
-        transform: translateY(0) scale(1) ;
-    }
+
+@keyframes autoShowAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(200px) scale(0.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .project {
@@ -276,9 +303,7 @@ body.project--active .marker::before {
 
 
 
-.timeline {
-
-}
+.timeline {}
 
 
 
