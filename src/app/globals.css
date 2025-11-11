@@ -53,7 +53,7 @@ h3 {
   }
 }
 
-svg path {
+#projectPortfolioSvg path {
   fill: transparent;
   stroke: white;
   stroke-dasharray: 947;
@@ -62,20 +62,35 @@ svg path {
   animation: titleAnimation 4s ease-in-out 1 forwards;
 }
 
+#projectPortfolioSvg {
+  width: clamp(10rem, calc(90vw + 1rem), 997px);
+  height: auto;
+}
+
+
 @keyframes titleAnimation {
-  0%{
+  0% {
     stroke-dashoffset: 947;
   }
 
-  80%{
+  80% {
     fill: transparent;
   }
 
-  100%{
+  100% {
     fill: white;
     stroke-dashoffset: 0;
   }
-  
+
+}
+
+.fadeIn {
+  animation: fadeInAnimation 4s ease-in-out 1 forwards;
+}
+
+@keyframes fadeInAnimation{
+  from {opacity: 0;}
+  to { opacity: 100;}
 }
 
 .autoShow {
@@ -102,14 +117,14 @@ svg path {
   }
 
   section {
-    --h: calc(var(--i) * 15);
+    --h: calc(200 + var(--i) * 15);
 
     min-height: 100vh;
     padding: 8rem 0 max(5vh, 2rem);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--h, 0) 61% 51%);
+    background-color: hsl(var(--h, 240) 61% 51%);
   }
 
   .container {
@@ -298,14 +313,6 @@ body.project--active .marker::before {
 .nav__link.is-active::after {
   display: none;
 }
-
-
-
-
-
-.timeline {}
-
-
 
 
 
