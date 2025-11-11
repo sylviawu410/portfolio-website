@@ -64,9 +64,9 @@ export default function Home() {
           </div>
           <div >
             <div className="w-[70%] lg:w-[30%] sm:w-[60%] gap-10 flex flex-col m-auto">
-              <p className="autoShow" >Hi! I am a recent graduate from The Chinese University of Hong Kong, where I majored in Systems Engineering and Engineering Management.</p>
-              <p className="autoShow">I'm a motivated developer passionate about building clean and user-focused web applications. With practical experience in the IT industry, I bring a collaborative mindset and a strong desire to keep learning. </p>
-              <p className="autoShow">I'm currently seeking full-time opportunities to grow and contribute as a web developer.</p>
+              <p className="autoShow" > Hi! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p className="autoShow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p className="autoShow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             </div>
           </div>
 
@@ -115,7 +115,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="w-full">
+        <section className="w-full mt-50">
           <h2 className="text-5xl m-auto text-center"> <Typewriter
             phrases={["Portfolio"]}
             isBlinking={false}
