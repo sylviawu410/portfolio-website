@@ -1,6 +1,5 @@
 "use client"
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
 import Typewriter from '@/components/Typewriter';
 import Projects from "@/components/Projects";
 import Timeline from "@/components/Timeline";
@@ -9,18 +8,17 @@ import Timeline from "@/components/Timeline";
 export default function Home() {
 
   const projectEvents = [
-    { id: "event1", year: "2023", title: "E-Commerce Website Project" },
-    { id: "event2", year: "2024", title: "FYP - Integrating Digital Identities with Blockchain Technology" },
-    { id: "event3", year: "2025", title: "Magazine Website" },
-    { id: "event4", year: "2025", title: "Project 4" },
-    { id: "event5", year: "2025", title: "Project 5" },
+    { id: "project1", year: "2023", title: "Full-Stack E-Commerce Project" },
+    { id: "project2", year: "2024", title: "FYP - Integrating Digital Identities with Blockchain Technology" },
+    { id: "project3", year: "2025", title: "Magazine Website" },
+    { id: "project4", year: "2025", title: "CUHK Data Hack 2025" },
   ]
 
   const timelineEvents = [
-    { id: "1", year: "2023", firm: "Firm A", title: "IT Trainee Intern", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-    { id: "2", year: "2024", firm: "Firm B", title: "Frontend Engineer Intern", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-    { id: "3", year: "2025", firm: "The Chinese University of Hong Kong", title: "Graduate", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation" },
-    { id: "4", year: "2025", firm: "ABC Group", title: "Software Development Consultant", content: "until now" },
+    { id: "1", year: "2023", firm: "Firm A", title: "IT Trainee Intern", content: "Developed an AI customer service system for YOHO Mall, contributing to a 30% reduction in labour costs and a 50% decrease in queuing time. " },
+    { id: "2", year: "2024", firm: "Firm B", title: "Frontend Engineer Intern", content: "Developed the new corporate website for OriginBit Limited from the ground up, using Nuxt.js to build a fully responsive and modern platform to showcase the company's portfolio and services." },
+    { id: "3", year: "2025", firm: "The Chinese University of Hong Kong", title: "Graduate", content: "Core Subjects: Data Analytics, Business Information Systems, Web Development" },
+    { id: "4", year: "2025", firm: "ABC Group", title: "Software Engineering Consultant", content: "Learned practical skills including Learn practical skills such as Object-Oriented Programming, Java, Springboot, cloud platforms, and CI/CD pipelines and AI integrations." },
   ]
 
   return (
@@ -64,9 +62,9 @@ export default function Home() {
           </div>
           <div >
             <div className="w-[70%] lg:w-[30%] sm:w-[60%] gap-10 flex flex-col m-auto">
-              <p className="autoShow" > Hi! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              <p className="autoShow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-              <p className="autoShow">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p className="autoShow" >Hello there! My journey into tech started at The Chinese University of Hong Kong, where I discovered a passion for not just building things, but building them right. For me, the best software creates experiences that are clean, intuitive, and a joy to use.</p>
+              <p className="autoShow">These days, I am applying and expanding my skills as a Software Engineering Consultant at FDM Group, where I am dedicated to continuous learning and contributing to high-impact projects.</p>
+              <p className="autoShow">I'm fueled by curiosity and I'm always learning—whether it's a new framework or a new system. If you're looking for a developer who cares about creative solutions and great user experiences, I'd love to connect!</p>
             </div>
           </div>
 
@@ -122,33 +120,22 @@ export default function Home() {
           /></h2>
 
           <Projects
-            events={projectEvents}
+            projects={projectEvents}
           />
-
-
-          <p>Check out more on my GitHub↗ </p>
         </section>
+<p>Check out more on my GitHub↗ </p>
 
-
-        <section className="m-auto pb-30 w-full">
-          <h2 className="text-5xl text-center">Contact...</h2>
-          <h3 className="text-4xl mb-20 md:mb-35 text-center" ><Typewriter
+        <section className="m-auto pb-100 w-full">
+          <h3 className="text-4xl  mb-20 md:mb-50 text-center" >
+            <Typewriter
             phrases={["Let's Get In Touch!"]}
             isBlinking={false}
           /></h3>
-          <div className="text-2xl md:text-3xl text-left m-auto w-fit flex flex-col gap-5 md:gap-8 ">
-            <span ><Typewriter
-              phrases={["LinkedIn↗"]}
-              isBlinking={false}
-            /></span>
-            <span ><Typewriter
-              phrases={["Gmail↗"]}
-              isBlinking={false}
-            /></span>
-            <span><Typewriter
-              phrases={["GitHub↗"]}
-              isBlinking={false}
-            /></span>
+          <div className=" text-3xl md:text-5xl text-left m-auto w-fit flex flex-col gap-5 md:gap-8 ">
+            <span className="autoBlur">LinkedIn↗</span>
+            <span className="autoBlur">Gmail↗</span>
+            <span className="autoBlur">GitHub↗</span>
+            <span className="autoBlur">About Me↗</span>
           </div>
 
         </section>

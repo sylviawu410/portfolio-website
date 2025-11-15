@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Draggable } from "gsap/Draggable";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import Typewriter from '@/components/Typewriter';
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger, Draggable, ScrollToPlugin);
@@ -10,7 +11,7 @@ if (typeof window !== "undefined") {
 
 const Project = (
     {
-        events = []
+        projects = []
     }) => {
     const trackRef = useRef(null);
     const navLinksRef = useRef([]);
@@ -190,15 +191,15 @@ const Project = (
                 <div className="marker" />
                 <div className="nav__track" ref={trackRef}>
                     <ul className="nav__list">
-                        {events.map((event, index) => (
-                            <li key={event.id}>
+                        {projects.map((project, index) => (
+                            <li key={project.id}>
                                 <a
-                                    href={`#${event.id}`}
+                                    href={`#${project.id}`}
                                     className="nav__link"
                                     data-link
                                     ref={(el) => (navLinksRef.current[index] = el)}
                                 >
-                                    <span>{event.year}</span>
+                                    <span>{project.year}</span>
                                 </a>
                             </li>
                         ))}
@@ -208,25 +209,21 @@ const Project = (
 
             <div className="project" ref={projectWrapperRef}>
                 <main>
-                    {events.map((event, index) => (
+                    {projects.map((project, index) => (
                         <section
-                            key={event.id}
-                            id={event.id}
-                            style={{ "--i": index }}
+                            key={project.id}
+                            id={project.id}
+                            style={{ backgroundImage: `url(/${project.id}.png)` }}
                             ref={(el) => (sectionRefs.current[index] = el)}
                         >
-                            <div className="container">
-                                <h2 className="section__heading">
-                                    <span>{event.year}</span>
-                                    <span>{event.title}</span>
-                                </h2>
-                                <div className="section__image">
-                                    <img
-                                        // src={`https://via.placeholder.com/1200x800?text=${encodeURIComponent(event.title)}`}
-                                        src="globe.svg"
-                                        alt={event.title}
-                                    />
-                                </div>
+                            <div className="container text-black bg-[#ce3635]">
+                                {/* <p className="font-bold text-xl text-white autoShow">{project.year}</p> */}
+                                <h4 className="text-3xl text-white text-center font-bold text-3xl md:text-7xl sm:text-4xl">
+                                    <Typewriter
+                                        phrases={[project.title]}
+                                        typewriterStyle="bg-[#ce3635] "
+                                        isBlinking={false}
+                                    /></h4>
                             </div>
                         </section>
                     ))}

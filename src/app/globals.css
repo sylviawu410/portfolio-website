@@ -37,6 +37,23 @@ h3 {
   line-height: normal;
 }
 
+.autoBlur{
+  animation: autoBlurAnimation linear both;
+  animation-timeline: view();
+}
+
+@keyframes autoBlurAnimation{
+  0%{
+    filter: blur(40px);
+  }
+  45%, 55%{
+    filter: blur(0px);
+  }
+  100%{
+    filter: blur(40px);
+  }
+}
+
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
@@ -53,20 +70,19 @@ h3 {
   }
 }
 
+#projectPortfolioSvg {
+  width: clamp(10rem, calc(90vw + 1rem), 997px);
+  height: auto;
+}
+
 #projectPortfolioSvg path {
   fill: transparent;
   stroke: white;
   stroke-dasharray: 947;
   stroke-dashoffset: 947;
   stroke-width: 0.1;
-  animation: titleAnimation 4s ease-in-out 1 forwards;
+  animation: titleAnimation 5s linear 1 forwards;
 }
-
-#projectPortfolioSvg {
-  width: clamp(10rem, calc(90vw + 1rem), 997px);
-  height: auto;
-}
-
 
 @keyframes titleAnimation {
   0% {
@@ -117,79 +133,24 @@ h3 {
   }
 
   section {
-    --h: calc(200 + var(--i) * 15);
-
     min-height: 100vh;
     padding: 8rem 0 max(5vh, 2rem);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--h, 240) 61% 51%);
+    background-size: cover;
   }
 
   .container {
-    width: 100%;
-    max-width: 80rem;
-    padding: 0 max(5vw, 1rem);
-    transform-style: preserve-3d;
-    perspective: 900px;
+    width: fit-content;
+    padding: 5px max(5vw, 1rem);
+    margin: auto;
 
     @media (min-width: 32em) {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 1rem;
     }
   }
 
-  .section__heading {
-    font-size: clamp(2rem, 12vmin, 7rem);
-    line-height: 1;
-    letter-spacing: -0.06em;
-    margin: 0 0 1rem;
-    grid-row: 1;
-    grid-column: 1 / span 7;
-    align-self: end;
-    position: relative;
-    z-index: 1;
 
-    span {
-      display: block;
-    }
-
-    span:first-child {
-      font-size: clamp(1rem, 10vmin, 5rem);
-    }
-
-    span:nth-child(2) {
-      word-break: break-word;
-    }
-  }
-
-  .section__image {
-    grid-row: 1;
-    grid-column: 5 / span 3;
-    position: relative;
-    box-shadow: 0.45rem 0.45rem 8rem rgb(0 0 0 / 0.3);
-    align-self: center;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      background-color: hsl(var(--h, 0) 50% 50%);
-      mix-blend-mode: screen;
-    }
-
-    img {
-      filter: brightness(0.5) grayscale(100%);
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-  }
 }
 
 /* project Navigation - Always fixed */
